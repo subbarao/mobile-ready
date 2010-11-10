@@ -2,7 +2,7 @@ class AuthenticationsController < ApplicationController
   def index
     @authentications = current_user.authentications if current_user
   end
-  
+
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
@@ -24,12 +24,5 @@ class AuthenticationsController < ApplicationController
         redirect_to new_user_registration_url
       end
     end
-  end
-  
-  def destroy
-    @authentication = current_user.authentications.find(params[:id])
-    @authentication.destroy
-    flash[:notice] = "Successfully destroyed authentication."
-    redirect_to authentications_url
   end
 end

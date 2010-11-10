@@ -8,7 +8,6 @@
         <div class="authentication">
           <%= image_tag "omniauth/#{authentication.provider}_32.png", :size => "32x32" %>
           <div class="provider"><%= authentication.provider_name %></div>
-          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
         </div>
       <% end %>
       <div class="clear"></div>

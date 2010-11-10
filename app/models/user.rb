@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   private
 
   def extract_email(omniauth)
-    (omniauth['provider'] == 'facebook' ? omniauth['extra']['user_hash'] : omniauth['user_info'])['email']
+    if omniauth['provider'] == 'facebook'
+      omniauth['extra']['user_hash'].try(:[],'email')
+    else
+      omniauth['user_info']['email']
+    end
   end
 end

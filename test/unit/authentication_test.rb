@@ -4,7 +4,6 @@ class AuthenticationTest < ActiveSupport::TestCase
 
   context "Authentication instance" do
     setup { Factory(:authentication) }
-    should validate_presence_of(:user_id)
     should validate_presence_of(:provider)
     should validate_uniqueness_of(:provider).scoped_to(:user_id)
   end
